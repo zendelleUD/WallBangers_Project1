@@ -8,4 +8,5 @@ var wallbangers=function(){
         obstacleSpeed:50
     }
     this.score=0;
+    this.player = 
 }
