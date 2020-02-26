@@ -20,22 +20,37 @@
     height:500px;
     position:relative;
 }
+.Text{
+    border:solid 1px black;
+    height:30px;
+    width:60px;
+    padding-right:5px;
+    text-align:right;
+    top:0px;
+    position:absolute;
+    right:0px;
+}
 #leftwall{
     background: black;
     height: 500px;
     width: 50px;
-    position: fixed;
+    position: absolute;
+    top: 0px;
+    right: 150px;
 }
 #rightwall{
     background: black;
     height: 500px;
     width: 50px;
-    position: fixed;
+    position: absolute;
+    top: 0px;
+    right: 350px;
 }
 #player{
     background: red;
     height: 50px;
     width: 50px;
     position: absolute;
-
+    top: 200px;
+    right: 200px;
 }
