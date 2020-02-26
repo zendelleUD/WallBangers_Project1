@@ -1,15 +1,18 @@
-var futballUI=function()
+var wallBangersUI=function()
 {
     var self=this;
     this.game=undefined;
     this.running=false;
     this.initialize=function()
     {
-        self.game=new futballGame()
+        //Initialize wallbangers.js
+        //Back end
+        self.game=new wallbangers()
      
            $('#GameStopped').show();
             $('#GameRunning').hide();
      
+        // Key Event Listener
       $('body').keypress(function(event){
             if (event.which==97)
             {
@@ -21,6 +24,8 @@ var futballUI=function()
             }
             $('#goalie').css("top",self.game.goaltender.Position+'px');
         });
+
+
         $('#StartBtn').on('click',function(){
             $('#GameStopped').hide();
             $('#GameRunning').show();
