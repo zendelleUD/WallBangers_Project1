@@ -19,6 +19,8 @@
     width:680px;
     height:500px;
     position:relative;
+    top:0px;
+    right:0px;
 }
 .Text{
     border:solid 1px black;
