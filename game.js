@@ -18,3 +18,18 @@ var wallbangers=function(){
         this.score = 0;
     }
 }
+var player = function(xPos, yPos, minX, maxX, minY, maxY, veloX, veloY){
+    var self = this;
+    this.xPos = xPos;
+    this.yPos = yPos;
+    this.minX = minX;
+    this.maxX = maxX;
+    this.minY = minY;
+    this.maxY = maxY;
+    this.veloX = veloX;
+    this.veloY = veloY;
+    this.initialize = function(){};
+    this.setPosition = function(xPos, yPos){
+        if()
+    }
+}
