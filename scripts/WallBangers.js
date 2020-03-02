@@ -6,6 +6,7 @@ var wallBangers=function(){
         wallHeight:500,
         wallWidth:50, // idea here is to have the wall width be half the width of the environment
         obstacleSpeed:50,
+        obstacleStartHeight:0,
         minX:50,
         minY:100
     }
@@ -48,18 +49,20 @@ var wallBangers=function(){
                 self.yPos = self.maxY;
             }
         };
-        this.incrementPosition = function(amount){
+        /*this.incrementPosition = function(amount){
             self.setPosition(self.xPos + amount, self.yPos + amount);
-        };
+        };*/
         this.jump = function(){
             
             if(!jump){ //Check if already jumping
                 switch (this.LtoR) {
                     case true:
-                        this.veloX += 20; //Left to Right                   
+                        //this.veloX += 20; //Left to Right   
+                        self.setPosition(xPos + 20, yPos);                
                         break;
                     case false:
-                        this.veloX -= 20; //Right to Left
+                        //this.veloX -= 20; //Right to Left
+                        self.setPosition(xPos - 20, yPos);
                         break;
                 }
                 this.jump = true;
@@ -68,5 +71,8 @@ var wallBangers=function(){
             
 
         };
+    }
+    this.generateHoles = function(){
+        
     }
 }
