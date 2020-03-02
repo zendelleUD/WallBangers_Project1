@@ -29,7 +29,22 @@ var player = function(xPos, yPos, minX, maxX, minY, maxY, veloX, veloY){
     this.veloX = veloX;
     this.veloY = veloY;
     this.initialize = function(){};
-    this.setPosition = function(xPos, yPos){
-        if()
-    }
+    this.setPosition = function(xPos, yPos){ // this is how we move the ninja
+        if(xPos < self.minX){
+            self.xPos = self.minX;
+        }
+        else if(xPos > self.maxX){
+            self.xPos = self.maxX;
+        }
+        if(yPos < self.minY){
+            self.yPos = self.minY;
+        }
+        if(yPos > self.maxY){
+            self.yPos = self.maxY;
+        }
+    };
+    this.incrementPosition = function(amount){
+        self.setPosition(self.xPos + amount, self.yPos + amount);
+    };
+    this.initialize();
 }
