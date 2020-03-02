@@ -34,6 +34,23 @@ var wallBangers=function(){
         this.veloX = veloX;
         this.veloY = veloY;
         this.initialize = function(){};
+        this.setPosition = function(xPos, yPos){ // this is how we move the ninja
+            if(xPos < self.minX){
+                self.xPos = self.minX;
+            }
+            else if(xPos > self.maxX){
+                self.xPos = self.maxX;
+            }
+            if(yPos < self.minY){
+                self.yPos = self.minY;
+            }
+            if(yPos > self.maxY){
+                self.yPos = self.maxY;
+            }
+        };
+        this.incrementPosition = function(amount){
+            self.setPosition(self.xPos + amount, self.yPos + amount);
+        };
         this.jump = function(){
             
             if(!jump){ //Check if already jumping
