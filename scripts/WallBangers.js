@@ -35,6 +35,7 @@ var player = function(xPos, yPos, minX, maxX, minY, maxY, veloX, veloY){
     this.maxY = maxY;
     this.veloX = veloX;
     this.veloY = veloY;
+    this.rightWall = true; // Determines which wall player is on. If on right, bool = true. If on left, bool = false.
     this.initialize = function(){};
     this.setPosition = function(xPos, yPos){ // this is how we move the ninja
         if(xPos < self.minX){
@@ -56,21 +57,28 @@ var player = function(xPos, yPos, minX, maxX, minY, maxY, veloX, veloY){
     this.jump = function(){
         
         if(!jump){ //Check if already jumping
-            switch (this.LtoR) {
-                case true:
+            switch (this.LtoR) { 
+                case true: // jumping left to right
                     //this.veloX += 20; //Left to Right   
-                    self.setPosition(xPos + 20, yPos);                
+                    self.setPosition(xPos + 20, yPos);
+                    this.rightWall = true;                
                     break;
-                case false:
+                case false: // jumping right to left
                     //this.veloX -= 20; //Right to Left
                     self.setPosition(xPos - 20, yPos);
+                    this.rightWall = false;
                     break;
             }
             this.jump = true;
         }
         this.veloY += 15; //Gravity
-        
-
+    };
+    this.isCollide=function(/*add possible parameters*/){
+        /*
+        check if the player is on the left wall or right wall (use rightWall boolean)
+        if the player hits any of the y positions within the range of a hole
+        do something
+        */
     };
 }
 
