@@ -20,6 +20,7 @@ var wallBangers=function(){
     this.reset=function(){
         this.score = 0;
     }
+    // put hole generator function here?
 }
 
 var player = function(xPos, yPos, minX, maxX, minY, maxY, veloX, veloY){
@@ -45,13 +46,13 @@ var player = function(xPos, yPos, minX, maxX, minY, maxY, veloX, veloY){
         if(yPos < self.minY){
             self.yPos = self.minY;
         }
-        if(yPos > self.maxY){
+        else if(yPos > self.maxY){
             self.yPos = self.maxY;
         }
     };
-    /*this.incrementPosition = function(amount){
-        self.setPosition(self.xPos + amount, self.yPos + amount);
-    };*/
+    this.incrementPosition = function(amount){
+        self.setPosition(self.xPos, self.yPos + amount);
+    };
     this.jump = function(){
         
         if(!jump){ //Check if already jumping
@@ -71,4 +72,21 @@ var player = function(xPos, yPos, minX, maxX, minY, maxY, veloX, veloY){
         
 
     };
+}
+
+var hole=function(xPos, yPos, minY, maxY){
+    this.length = Math.floor((Math.random() * 100) + 1);
+    this.xPos=xPos;
+    this.yPos=yPos;
+    this.minY=minY;
+    this.maxY=maxY;
+
+    this.move=function(speed){ // this will handle moving the wall 
+        if(self.yPos + speed > maxY){ // checking to make sure the hole has not hit the bottom of the wall
+            // do something
+        }
+        else{
+            self.yPos = self.yPos + speed;
+        }
+    }
 }
