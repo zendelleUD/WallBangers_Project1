@@ -38,11 +38,8 @@ var WallBangersUI=function()
         });
     };
     this.refreshView=function(){
-        $('#futball').css("left",self.game.ball.xPos-7);
-        $('#futball').css("top",self.game.ball.yPos-7);
-        $('#goalie').css("top",self.game.goaltender.Position+'px');
-        $('#AttemptCount').text(self.game.shotsTaken);
-        $('#MissCount').text(self.game.shotsMissed);
+        $('#player').css("left",self.game.ninja.xPos-7);
+        $('#player').css("top",self.game.ninja.yPos-7);
     };
     
     this.updateUI=function()
