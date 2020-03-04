@@ -51,5 +51,42 @@ var wallBangers=function(){
             
 
         };
+
+
     }
+
+    this.update=function(time){
+        self.ball.updatePosition(time);
+        
+        if (self.ball.xPos>self.options.width-self.options.goalRight-self.options.goalWidth)
+        {
+            var topPostY=(self.options.height-self.options.goalHeight)/2;
+            var botPostY=topPostY+self.options.goalHeight;
+            self.shotsTaken++;
+            if (self.ball.yPos>topPostY && self.ball.yPos<botPostY){
+                if (self.ball.yPos-topPostY<self.goaltender.Position||self.ball.yPos-topPostY>self.goaltender.Position+self.options.goalieHeight)
+                {
+                    self.ball.xPos=self.options.width-self.options.goalRight-self.options.goalWidth/2;
+                                
+                    return 1;
+                }
+                else{
+                    self.ball.xPos=self.options.width-self.options.goalRight-self.options.goalWidth;
+                    self.shotsMissed++;
+                    return 2;
+                    
+                }
+            }
+            else 
+            {
+                self.ball.xPos=self.options.width-self.options.goalRight-self.options.goalWidth/2;
+                self.shotsMissed++;
+                return 3;
+            }
+        }
+
+        return 0;
+        
+    };
+
 }

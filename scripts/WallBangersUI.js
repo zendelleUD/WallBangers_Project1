@@ -18,18 +18,18 @@ var WallBangersUI=function()
             {
                 self.game.ninja.jump();   
             }
-            $('#player').css("right",self.game.ninja.Position+'px');
+            $('#player').css("right",self.game.ninja.xPos+'px');
         });
 
 
-        $('#StartBtn').on('click',function(){
+        $('#ResumeBtn').on('click',function(){
             $('#GameStopped').hide();
             $('#GameRunning').show();
             $('#Status').text('Get Ready...');
             self.running=true;
             self.takeShot();
         });
-        $('#StopBtn').on('click',function(){
+        $('#PauseBtn').on('click',function(){
             $('#GameStopped').show();
             $('#GameRunning').hide();
             self.running=false;
@@ -38,11 +38,8 @@ var WallBangersUI=function()
         });
     };
     this.refreshView=function(){
-        $('#futball').css("left",self.game.ball.xPos-7);
-        $('#futball').css("top",self.game.ball.yPos-7);
-        $('#goalie').css("top",self.game.goaltender.Position+'px');
-        $('#AttemptCount').text(self.game.shotsTaken);
-        $('#MissCount').text(self.game.shotsMissed);
+        $('#player').css("right",self.game.ball.xPos + 'px');
+        
     };
     
     this.updateUI=function()
