@@ -91,7 +91,7 @@ var player = function(xPos, yPos, minX, maxX, minY, maxY, veloX, veloY){
     };
 }
 
-var hole=function(xPos, yPos, minY, maxY){
+/*var hole=function(xPos, yPos, minY, maxY){
     this.length = Math.floor((Math.random() * 100) + 1);
     this.xPos=xPos;
     this.yPos=yPos;
@@ -106,4 +106,4 @@ var hole=function(xPos, yPos, minY, maxY){
             self.yPos = self.yPos + speed;
         }
     }
-}
+}*/
