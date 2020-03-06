@@ -1,9 +1,9 @@
 var wallBangers=function(){
     var self=this;
     this.options={
-        height:500,
+        height:200, // this is the visible height of the game environment
         width:680,
-        wallHeight:500,
+        wallHeight:2000, // this is how high the wall actually is. This is going to be for programming safe zones and things like that
         wallWidth:50, // idea here is to have the wall width be half the width of the environment
         obstacleSpeed:50,
         obstacleStartHeight:0,
@@ -12,15 +12,28 @@ var wallBangers=function(){
     }
     this.score=0; // This is the total number of points the player has accumulated so far
                     //player(xPos, yPos, minX, maxX, minY, maxY, veloX, veloY)
+    /*this.topOfPreviousSafeZoneRight=0;
+    this.topOfPreviousSafeZoneLeft=0;
+    this.bottomOfPreviousSafeZoneRight=0;
+    this.bottomOfPreviousSafeZoneLeft=0;*/
     this.ninja = new player(0+this.options.wallWidth, this.options.height, 0, this.options.width-this.options.wallWidth, 
                             this.options.height, this.options.height - 100, 0, 0); // Add the coordinates for the ninja. The goal is to have him on the bottom of the right wall essentially
+    this.safeZones=function(){
+        this.start = 0; // This will track the beginning of a safe zone. After each safe zone is generated, start will increment by 50
+        var sZones = new Array(30);
+        for(var i = 0; i < 30; i++){
+            sZones[i] = newArray(2); // will be 30 sets of pairs of ranges
+            sZone[i][0]=start; // this will always be the bottom. [i][0] is the bottom of safe zone
+            sZone[i][1] = Math.floor(Math.random()*(50-25)+25)+start; // [i][1] is the top of the safe zone
+            start+=50; // now the bottom of the next safe zone will start at 50 
+        }
+    }
     this.initialize=function(){
         self.reset();
     };
     this.reset=function(){
         this.score = 0;
     }
-    // put hole generator function here?
 }
 
 var player = function(xPos, yPos, minX, maxX, minY, maxY, veloX, veloY){
@@ -74,11 +87,7 @@ var player = function(xPos, yPos, minX, maxX, minY, maxY, veloX, veloY){
         this.veloY += 15; //Gravity
     };
     this.isCollide=function(/*add possible parameters*/){
-        /*
-        check if the player is on the left wall or right wall (use rightWall boolean)
-        if the player hits any of the y positions within the range of a hole
-        do something
-        */
+        
     };
 }
 
