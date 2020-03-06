@@ -37,21 +37,22 @@ var WallBangersUI=function()
             self.refreshView();
         });
     };
-    this.refreshView=function(){
-        $('#player').css("right",self.game.ball.xPos + 'px');
+    // this.refreshView=function(){
+    //     $('#player').css("right",self.game.ball.xPos + 'px');
         
-    };
+    // };
     
-    this.updateUI=function()
-    {
-        if (self.running==false)
-        {
-            return;
-        }
-            var result=self.game.update(.1);
-            self.refreshView();
-
-
+    
+    this.updateUI=function(){
+        
+            var result=self.game.update();
+            // self.refreshView();
+            $('#player').css("right",self.game.ninja.xPos +'px');
+            // this.game.update();
     }
     this.initialize();
+    setInterval(this.updateUI, 33);
+    // var event = document.addEventListener("onkeydown", this.updateUI());
+    // var x = event.keycode;
+    // console.log(x);
 }

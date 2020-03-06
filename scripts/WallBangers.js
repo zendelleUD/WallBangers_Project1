@@ -9,10 +9,11 @@ var wallBangers=function(){
         minX:50,
         minY:100
     }
+
+    
     this.score=0; // This is the total number of points the player has accumulated so far
                     //player(xPos, yPos, minX, maxX, minY, maxY, veloX, veloY)
-    this.ninja = new player(0+this.options.wallWidth, this.options.height, 0, this.options.width-this.options.wallWidth, 
-                            this.options.height, this.options.height - 100, 0, 0); // Add the coordinates for the ninja. The goal is to have him on the bottom of the right wall essentially
+    this.ninja = new player(); // Add the coordinates for the ninja. The goal is to have him on the bottom of the right wall essentially
     this.initialize=function(){
         self.reset();
     };
@@ -21,72 +22,47 @@ var wallBangers=function(){
     }
 
 
-    var player = function(xPos, yPos, minX, maxX, minY, maxY, veloX, veloY){
-        var self = this;
-        this.jump = false;
-        this.LtoR = true;
-        this.xPos = xPos;
-        this.yPos = yPos;
-        this.minX = minX;
-        this.maxX = maxX;
-        this.minY = minY;
-        this.maxY = maxY;
-        this.veloX = veloX;
-        this.veloY = veloY;
-        this.initialize = function(){};
-        this.jump = function(){
-            
-            if(!jump){ //Check if already jumping
-                switch (this.LtoR) {
-                    case true:
-                        this.veloX += 20; //Left to Right                   
-                        break;
-                    case false:
-                        this.veloX -= 20; //Right to Left
-                        break;
-                }
-                this.jump = true;
-            }
-            this.veloY += 15; //Gravity
-            
+    
 
-        };
-
-
-    }
-
-    this.update=function(time){
-        self.ball.updatePosition(time);
+    this.update=function(){
         
-        if (self.ball.xPos>self.options.width-self.options.goalRight-self.options.goalWidth)
-        {
-            var topPostY=(self.options.height-self.options.goalHeight)/2;
-            var botPostY=topPostY+self.options.goalHeight;
-            self.shotsTaken++;
-            if (self.ball.yPos>topPostY && self.ball.yPos<botPostY){
-                if (self.ball.yPos-topPostY<self.goaltender.Position||self.ball.yPos-topPostY>self.goaltender.Position+self.options.goalieHeight)
-                {
-                    self.ball.xPos=self.options.width-self.options.goalRight-self.options.goalWidth/2;
-                                
-                    return 1;
-                }
-                else{
-                    self.ball.xPos=self.options.width-self.options.goalRight-self.options.goalWidth;
-                    self.shotsMissed++;
-                    return 2;
-                    
-                }
-            }
-            else 
-            {
-                self.ball.xPos=self.options.width-self.options.goalRight-self.options.goalWidth/2;
-                self.shotsMissed++;
-                return 3;
-            }
-        }
-
-        return 0;
+        self.ninja.xPos += 1; 
+        // document.write("updating\n");
         
     };
 
+}
+
+function player(){
+    var self = this;
+    this.jump = false;
+    this.LtoR = false;
+    this.xPos = 0;
+    this.yPos = 0;
+    this.minX = 0;
+    this.maxX = 0;
+    this.minY = 0;
+    this.maxY = 0;
+    this.veloX = 0;
+    this.veloY = 0;
+    this.initialize = function(){};
+    this.jump = function(){
+        
+        if(!this.jump){ //Check if already jumping
+            switch (this.LtoR) {
+                case true:
+                    this.posX += 400; //Left to Right
+                    this.jump = false;                   
+                    break;
+                case false:
+                    this.posX += (this.posX + 100); //Right to Left
+                    this.jump = false;
+                    break;
+            }
+            this.jump = true;
+        }
+        this.veloY += 15; //Gravity
+        
+
+    };
 }
