@@ -51,8 +51,7 @@ var WallBangersUI=function()
             // this.game.update();
     }
     this.initialize();
-    setInterval(this.updateUI, 33);
-    // var event = document.addEventListener("onkeydown", this.updateUI());
-    // var x = event.keycode;
-    // console.log(x);
+    setInterval(this.updateUI, 60);
+    
+    
 }
