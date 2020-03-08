@@ -1,7 +1,9 @@
 var WallBangersUI=function()
 {
     var self=this;
+    // var clock = 0;
     this.game=undefined;
+     var isPause = true;
     this.running=false;
     this.initialize=function()
     {
@@ -25,37 +27,41 @@ var WallBangersUI=function()
         });
 
 
-        $('#ResumeBtn').on('click',function(){
-            $('#GameStopped').hide();
-            $('#GameRunning').show();
-            $('#Status').text('Get Ready...');
-            self.running=true;
-            self.takeShot();
+        $('#resumebtn').on('click',function(){
+            $('#resumebtn').text("Resume");
+            console.log("resume pressed");
+            isPause = false;
+            console.log(this.isPause);
+            //clock = setInterval(this.updateUI,60);
         });
-        $('#PauseBtn').on('click',function(){
-            $('#GameStopped').show();
-            $('#GameRunning').hide();
-            self.running=false;
-            self.game.reset();
-            self.refreshView();
+
+        $('#pausebtn').on('click',function(){
+            console.log("paused pressed");
+            isPause = true;
+            console.log(this.isPause);
+            // clock = 0;
         });
     };
 
     this.refreshView=function(){
         $('#player').css("right",self.game.ninja.xPos + 'px');
         $('#player').css("bottom",self.game.ninja.yPos + 'px');
-        document.getElementById("score").innerText = self.game.score;
+        $(".Text").text(self.game.score);
     };
         
     this.updateUI=function(){
-        
-            var result=self.game.update();
-            // self.refreshView();
-            self.refreshView();
-            // this.game.update();
+            if (!isPause) {
+            var result= self.game.update();
+                self.refreshView(); 
+            } 
+    }
+
+    this.checkPause = function(){
+        if(this.isPause == false){
+            this.updateUI();
+        }
     }
     this.initialize();
-    setInterval(this.updateUI, 60);
-    
+    setInterval(this.updateUI,60);
     
 }
