@@ -24,7 +24,9 @@ var wallBangers=function(){
     }
 
     this.update=function(){
-        self.ninja.xPos += self.ninja.veloX;
+        // self.ninja.xPos += self.ninja.veloX;
+        // self.ninja.yPos += self.ninja.veloY;
+        this.ninja.updatePlayer();
         this.updateScore(); 
         // document.write("updating\n");
         self.ninja.isCollide();
@@ -45,40 +47,57 @@ function player(){
     this.veloX = 0;
     this.veloY = 0;
     this.initialize = function(){};
+    this.gravity = function(){
+        this.veloY -= 10;
+    };
+    this.jetpack = function(){
+        this.veloY += 40;
+    }
     this.jump = function(){
         
         // var currentlyJumping = this.jumping;
         if(this.jumping == false && (this.xPos ==0 || this.xPos == 450)){
             if(this.LtoR == true){
-                    this.veloX -= 4;
+                    this.veloX -= 20;
                     this.jumping = true;
-                    console.log("Jumping right")
                 }else{
-                    this.veloX += 4;  
+                    this.veloX += 20;  
                     this.jumping = true;
-                    console.log("Jumping left");
-                }
+                }    
+            this.veloY = 50;
         }
+        // this.jetpack();
        
-        console.log(this.veloX);
-    }
-    // this.xPos += this.veloX; //Gravity
-    console.log("This is xPos: " + this.xPos + "\nThis is veloX: " + this.veloX );
+    };
+
     
     this.isCollide=function(/*add possible parameters*/){
        
-        this.veloX = (this.xPos > 450 || this.xPos < 0) ? 0: this.veloX;
-        
-        this.jumping = (this.xPos > 450 || this.xPos < 0) ? false : this.jumping; 
+        this.jumping = (this.xPos >= 450 || this.xPos <= 0) ? false : this.jumping; 
 
         this.xPos = (this.xPos > 450 ) ? 450 : this.xPos;
         this.xPos =  (this.xPos < 0 ) ? 0 : this.xPos;
+
+        this.yPos = (this.yPos < 0  ) ? 0 : this.yPos;
+        this.yPos =  (this.yPos > 470 ) ? 470 : this.yPos;
+    
+        this.veloX = (this.xPos >= 450 || this.xPos <= 0) ? 0: this.veloX;
 
         this.LtoR = (this.xPos == 450) ? true: this.LtoR;
         this.LtoR = (this.xPos == 0) ? false: this.LtoR;
         
     };
     
+    this.updatePlayer = function(){
+        self.xPos += self.veloX;
+        self.yPos += self.veloY;
+        if(this.jump){ 
+            this.gravity();
+        }else{
+            // this.jetpack();
+        }
+
+    };
     
 };
 

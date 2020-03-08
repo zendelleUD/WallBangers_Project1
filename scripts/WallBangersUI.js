@@ -18,27 +18,25 @@ var WallBangersUI=function()
         // new KeyboardEvent("onKeyPress",self.game.ninja.jump());
         // Key Event Listener
       $('body').keypress(function(event){
-            if (event.which==32) //Keycode for space is 32
+            if (event.which==32 && !self.game.ninja.jumping && (self.game.ninja.xPos != 0 ||self.game.ninja.xPos != 450) ) //Keycode for space is 32
             {
                 self.game.ninja.jump();
-                console.log("jumping");   
+                // self.game.ninja.jetpack();
+            }
+            else if(self.game.ninja.jumping && (self.game.ninja.xPos > 30 && self.game.ninja.xPos < 450)){
+                self.game.ninja.jetpack();
             }
             // $('#player').css("right",self.game.ninja.xPos+'px');
         });
 
-
         $('#resumebtn').on('click',function(){
             $('#resumebtn').text("Resume");
-            console.log("resume pressed");
             isPause = false;
-            console.log(this.isPause);
             //clock = setInterval(this.updateUI,60);
         });
 
         $('#pausebtn').on('click',function(){
-            console.log("paused pressed");
             isPause = true;
-            console.log(this.isPause);
             // clock = 0;
         });
     };
@@ -62,6 +60,6 @@ var WallBangersUI=function()
         }
     }
     this.initialize();
-    setInterval(this.updateUI,60);
+    setInterval(this.updateUI,33);
     
 }
